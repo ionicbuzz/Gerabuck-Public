@@ -1,0 +1,398 @@
+<checkout.html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Gerabuck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            transition: opacity 0.5s ease-out;
+        }
+        body.fade-out {
+            opacity: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .logo a {
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+        .profile-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .checkout-form {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .checkout-form h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .checkout-form label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .checkout-form select,
+        .checkout-form input {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .checkout-form button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .checkout-form button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .payment-options {
+            margin-bottom: 20px;
+        }
+        .qr-code {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #f4f4f4;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
+        footer {
+            background-color: #E5E4E2;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-section {
+            width: 30%;
+        }
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .card-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card-details div {
+            flex: 1 1 100%;
+            margin-bottom: 15px;
+        }
+        @media (min-width: 576px) {
+            .card-details div {
+                flex: 1 1 48%;
+            }
+        }
+        .card-details input {
+            width: calc(100% - 20px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="homepage.html" onclick="navigateTo('homepage.html'); return false;">GERABUCK</a></div>
+        <nav>
+            <ul>
+                <li><a href="journey.html" onclick="navigateTo('journey.html'); return false;">Journey Plan</a></li>
+                <li><a href="subscription.html" onclick="navigateTo('subscription.html'); return false;">Subscription</a></li>
+            </ul>
+        </nav>
+        <div class="profile-icon"><a href="profile.html" onclick="navigateTo('profile.html'); return false;"><img src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png" alt="Profile"></a></div>
+    </header>
+    <main>
+        <div class="checkout-form">
+            <h1>Checkout</h1>
+            <label for="start">Start Station</label>
+            <select id="start" name="start">
+                <option value="">Select Start Station</option>
+                <option value="Station1">Station1</option>
+                <option value="Station2">Station2</option>
+                <option value="Station3">Station3</option>
+                <!-- Add more stations as needed -->
+            </select>
+            <label for="end">End Station</label>
+            <select id="end" name="end">
+                <option value="">Select End Station</option>
+                <option value="Station1">Station1</option>
+                <option value="Station2">Station2</option>
+                <option value="Station3">Station3</option>
+                <!-- Add more stations as needed -->
+            </select>
+
+            <div class="payment-options">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" name="payment-method" onchange="displayPaymentFields()" required>
+                    <option value="">Select a payment method</option>
+                    <option value="qr-code">E-Wallet (QR Code)</option>
+                    <option value="card">VISA/Mastercard</option>
+                    <option value="online-banking">Online Banking</option>
+                </select>
+            </div>
+
+            <div id="card-details" class="card-details" style="display: none;">
+                <div>
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" placeholder="Enter your card number" required>
+                </div>
+                <div>
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+                </div>
+                <div>
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+                </div>
+                <div id="card-error" class="error-message">Card number must be exactly 16 digits.</div>
+            </div>
+
+            <div id="qr-code" class="qr-code">
+                <img src="https://via.placeholder.com/150" alt="QR Code">
+                <p>Scan this QR code with your e-wallet app to complete the payment.</p>
+            </div>
+
+            <div id="online-banking-details" style="display: none;">
+                <label for="bank">Select Bank</label>
+                <select id="bank" name="bank" required>
+                    <option value="">Select your bank</option>
+                    <option value="Affin Bank">Affin Bank</option>
+                    <option value="Alliance Bank">Alliance Bank</option>
+                    <option value="AmBank">AmBank</option>
+                    <option value="Bank Islam">Bank Islam</option>
+                    <option value="Bank Muamalat">Bank Muamalat</option>
+                    <option value="CIMB">CIMB</option>
+                    <option value="Hong Leong Bank">Hong Leong Bank</option>
+                    <option value="Maybank">Maybank</option>
+                    <option value="Public Bank">Public Bank</option>
+                    <option value="RHB Bank">RHB Bank</option>
+                </select>
+            </div>
+
+            <button type="button" onclick="validateAndShowConfirmationBox()">Checkout</button>
+            <p id="fare-calculation"></p>
+        </div>
+
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <iframe src="confirmation.html" frameborder="0" style="width: 100%; height: 200px;"></iframe>
+            </div>
+        </div>
+
+        <div id="success-message" class="success-message">
+            <p>Payment successfully completed. Your subscription information has been updated.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="contact.html" onclick="navigateTo('contact.html'); return false;">Contact Us</a></li>
+                    <li><a href="career.html" onclick="navigateTo('career.html'); return false;">Career Path</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="faqs.html" onclick="navigateTo('faqs.html'); return false;">FAQs</a></li>
+                    <li><a href="safety.html" onclick="navigateTo('safety.html'); return false;">Safety Advisory</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright © 2024 Gerabuck. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(url) {
+            document.body.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = url;
+            }, 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav ul li a, .footer-section ul li a, .logo a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const url = this.href;
+                    navigateTo(url);
+                });
+            });
+
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan');
+            const price = parseFloat(params.get('price'));
+            const sst = 0.06;
+            const totalCost = price + (price * sst);
+
+            document.getElementById('fare-calculation').innerText = `Subscription Plan: ${plan} - RM${price}\nTotal Cost (including SST): RM${totalCost.toFixed(2)} (RM${price} + RM${(price * sst).toFixed(2)} SST)`;
+        });
+
+        function displayPaymentFields() {
+            const paymentMethod = document.getElementById("payment-method").value;
+            document.getElementById("card-details").style.display = 'none';
+            document.getElementById("qr-code").style.display = 'none';
+            document.getElementById("online-banking-details").style.display = 'none';
+
+            if (paymentMethod === 'card') {
+                document.getElementById("card-details").style.display = 'block';
+            } else if (paymentMethod === 'qr-code') {
+                document.getElementById("qr-code").style.display = 'block';
+            } else if (paymentMethod === 'online-banking') {
+                document.getElementById("online-banking-details").style.display = 'block';
+            }
+        }
+
+        function validateAndShowConfirmationBox() {
+            const start = document.getElementById("start").value;
+            const end = document.getElementById("end").value;
+            const paymentMethod = document.getElementById("payment-method").value;
+            const cardNumber = document.getElementById("card-number").value;
+
+            if (!start || !end || !paymentMethod) {
+                alert("Please fill all the required fields.");
+                return;
+            }
+
+            if (paymentMethod === 'card' && cardNumber.length !== 16) {
+                document.getElementById("card-error").style.display = 'block';
+                return;
+            } else {
+                document.getElementById("card-error").style.display = 'none';
+            }
+
+            document.getElementById("confirmation-modal").style.display = 'block';
+        }
+
+        function submitPayment() {
+            document.getElementById("confirmation-modal").style.display = 'none';
+            document.getElementById("success-message").style.display = 'block';
+
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan');
+            localStorage.setItem('subscriptionPlan', plan);
+
+            setTimeout(() => {
+                navigateTo('profile.html');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

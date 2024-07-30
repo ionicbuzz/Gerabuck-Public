@@ -1,0 +1,283 @@
+<subscription.html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription - Gerabuck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            transition: opacity 0.5s ease-out;
+        }
+        body.fade-out {
+            opacity: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .logo a {
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+        .profile-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .plan {
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .plan.basic {
+            background-color: #000;
+            color: #fff;
+        }
+        .plan.standard {
+            background-color: #5A5A5A;
+            color: #fff;
+        }
+        .plan.standard::after {
+            content: "#bestdeal";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #AB47BC;
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .plan h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .plan h3 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .plan p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .plan.basic p,
+        .plan.standard p {
+            color: #fff;
+        }
+        .plan ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .plan ul li {
+            margin-bottom: 10px;
+        }
+        .plan ul li::before {
+            content: '✔';
+            margin-right: 10px;
+        }
+        .plan button {
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .plan.basic button,
+        .plan.standard button {
+            background-color: #fff;
+            color: #000;
+        }
+        .plan button img {
+            margin-left: 10px;
+        }
+        .plan button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        footer {
+            background-color: #E5E4E2;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-section {
+            width: 30%;
+        }
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/" onclick="navigateTo('/'); return false;">GERABUCK</a></div>
+        <nav>
+            <ul>
+                <li><a href="journey.html" onclick="navigateTo('journey'); return false;">Journey Plan</a></li>
+                <li><a href="subscription.html" onclick="navigateTo('subscription'); return false;">Subscription</a></li>
+            </ul>
+        </nav>
+        <div class="profile-icon"><a href="profile.html" onclick="navigateTo('profile'); return false;"><img src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png" alt="Profile"></a></div>
+    </header>
+    <main>
+        <div class="plan basic">
+            <h2>Basic</h2>
+            <h3>RM50</h3>
+            <p>forever free for individuals and small teams up to 3</p>
+            <ul>
+                <li>Discount</li>
+                <li>Travel Insurance</li>
+            </ul>
+            <button onclick="choosePlan('Basic', 50)">Start for free <img src="https://static-00.iconduck.com/assets.00/arrow-circle-right-icon-512x512-b8acao5m.png" alt="Arrow" style="width: 25px; height: 25px;"></button>
+        </div>
+        <div class="plan standard">
+            <h2>Standard</h2>
+            <h3>RM89</h3>
+            <p>per user/month billed yearly<br>RM89 billed monthly</p>
+            <ul>
+                <li>Discount</li>
+                <li>Reserved seating</li>
+                <li>Travel Insurance</li>
+            </ul>
+            <button onclick="choosePlan('Standard', 89)">Get Unlimited <img src="https://static-00.iconduck.com/assets.00/arrow-circle-right-icon-512x512-b8acao5m.png" alt="Arrow" style="width: 25px; height: 25px;"></button>
+        </div>
+        <div class="plan">
+            <h2>Premium</h2>
+            <h3>RM139</h3>
+            <p>per user/month billed yearly<br>RM139 billed monthly</p>
+            <ul>
+                <li>Discount</li>
+                <li>Reserved Seating</li>
+                <li>Travel Insurance</li>
+                <li>VIP Perks</li>
+            </ul>
+            <button onclick="choosePlan('Premium', 139)">Get Enterprise <img src="https://static-00.iconduck.com/assets.00/arrow-circle-right-icon-512x512-b8acao5m.png" alt="Arrow" style="width: 25px; height: 25px;"></button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="contact.html" onclick="navigateTo('contact.html'); return false;">Contact Us</a></li>
+                    <li><a href="career.html" onclick="navigateTo('career.html'); return false;">Career Path</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="faqs.html" onclick="navigateTo('faqs.html'); return false;">FAQs</a></li>
+                    <li><a href="safety.html" onclick="navigateTo('safety.html'); return false;">Safety Advisory</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright © 2024 Gerabuck. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+        function choosePlan(planName, planPrice) {
+            const url = `checkout.html?plan=${planName}&price=${planPrice}`;
+            navigateTo(url);
+        }
+
+        function navigateTo(url) {
+            document.body.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = url;
+            }, 500); // Match this to the CSS transition duration
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav ul li a, .footer-section ul li a, .logo');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    navigateTo(url);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

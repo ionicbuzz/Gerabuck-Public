@@ -1,0 +1,586 @@
+<user.html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Access - Gerabuck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            transition: opacity 0.5s ease-out;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .profile-icon {
+            position: relative;
+        }
+
+        .profile-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            width: 100px;
+            text-align: left;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .profile-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .form-section {
+            background-color: #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            margin: 0 10px;
+        }
+
+        .form-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-section label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-section input,
+        .form-section select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-section button {
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-section button:hover {
+            background-color: #333;
+        }
+
+        .form-section small {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .dob-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dob-container select {
+            width: 32%;
+        }
+
+        footer {
+            background-color: #E5E4E2;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="navigateTo('homepage.html'); return false;">GERABUCK</div>
+        <nav>
+            <ul>
+                <li><a href="journey.html" onclick="navigateTo('journey.html'); return false;">Journey Plan</a></li>
+                <li><a href="subscription.html" onclick="navigateTo('subscription.html'); return false;">Subscription</a></li>
+            </ul>
+        </nav>
+        <div class="profile-icon">
+            <img src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png" alt="Profile" onclick="toggleProfileMenu()">
+            <div id="profile-menu" class="profile-menu">
+                <a href="profile.html" onclick="navigateTo('profile.html'); return false;">Profile</a>
+                <a href="javascript:void(0);" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>USER ACCESS</h1>
+        <div class="form-container">
+            <div class="form-section">
+                <h2>Create new Account</h2>
+                <small>Become part of us!</a></small>
+                <form id="registerForm">
+                    <label for="name">NAME</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <div id="name-error" class="error"></div>
+                    
+                    <label for="email">EMAIL</label>
+                    <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+                    <div id="email-error" class="error"></div>
+
+                    <label for="phone">PHONE NUMBER</label>
+                    <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+                    
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password" placeholder="******" required>
+                    <div id="password-error" class="error"></div>
+                    
+                    <label for="gender">GENDER</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    
+                    <label for="dob">DATE OF BIRTH</label>
+                    <div class="dob-container">
+                        <select id="dob-day" name="dob-day" required>
+                            <option value="" disabled selected>Day</option>
+                            <!-- Day options -->
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        <select id="dob-month" name="dob-month" required>
+                            <option value="" disabled selected>Month</option>
+                            <!-- Month options -->
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="dob-year" name="dob-year" required>
+                            <option value="" disabled selected>Year</option>
+                            <!-- Year options -->
+                            <option value="1950">1950</option>
+                            <option value="1951">1951</option>
+                            <option value="1952">1952</option>
+                            <option value="1953">1953</option>
+                            <option value="1954">1954</option>
+                            <option value="1955">1955</option>
+                            <option value="1956">1956</option>
+                            <option value="1957">1957</option>
+                            <option value="1958">1958</option>
+                            <option value="1959">1959</option>
+                            <option value="1960">1960</option>
+                            <option value="1961">1961</option>
+                            <option value="1962">1962</option>
+                            <option value="1963">1963</option>
+                            <option value="1964">1964</option>
+                            <option value="1965">1965</option>
+                            <option value="1966">1966</option>
+                            <option value="1967">1967</option>
+                            <option value="1968">1968</option>
+                            <option value="1969">1969</option>
+                            <option value="1970">1970</option>
+                            <option value="1971">1971</option>
+                            <option value="1972">1972</option>
+                            <option value="1973">1973</option>
+                            <option value="1974">1974</option>
+                            <option value="1975">1975</option>
+                            <option value="1976">1976</option>
+                            <option value="1977">1977</option>
+                            <option value="1978">1978</option>
+                            <option value="1979">1979</option>
+                            <option value="1980">1980</option>
+                            <option value="1981">1981</option>
+                            <option value="1982">1982</option>
+                            <option value="1983">1983</option>
+                            <option value="1984">1984</option>
+                            <option value="1985">1985</option>
+                            <option value="1986">1986</option>
+                            <option value="1987">1987</option>
+                            <option value="1988">1988</option>
+                            <option value="1989">1989</option>
+                            <option value="1990">1990</option>
+                            <option value="1991">1991</option>
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            </select>
+                    </div>
+                    
+                    <small>
+                        <input type="checkbox" id="tnc" name="tnc" required>
+                        Agree Terms and Conditions
+                    </small>
+                    <div id="tnc-error" class="error"></div>
+                    
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div class="form-section">
+                <h2>Login</h2>
+                <small>Sign in to continue</small>
+                <form id="loginForm">
+                    <label for="login-email">EMAIL</label>
+                    <input type="email" id="login-email" name="login-email" placeholder="hello@example.com" required>
+                    
+                    <label for="login-password">PASSWORD</label>
+                    <input type="password" id="login-password" name="login-password" placeholder="******" required>
+                    
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <div class="form-section">
+                <h2>Forgot Password</h2>
+                <small>New Password</small>
+                <form id="forgotForm">
+                    <label for="forgot-email">EMAIL</label>
+                    <input type="email" id="forgot-email" name="forgot-email" placeholder="hello@example.com" required>
+                    <div id="forgot-email-error" class="error"></div>
+                    
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="contact.html" onclick="navigateTo('contact.html'); return false;">Contact Us</a></li>
+                    <li><a href="career.html" onclick="navigateTo('career.html'); return false;">Career Path</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="faqs.html" onclick="navigateTo('faqs.html'); return false;">FAQs</a></li>
+                    <li><a href="safety.html" onclick="navigateTo('safety.html'); return false;">Safety Advisory</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright © 2024 Gerabuck. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+        // Form validation and submission for register form
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const phone = document.getElementById('phone').value;
+            const gender = document.getElementById('gender').value;
+            const dobDay = document.getElementById('dob-day').value;
+            const dobMonth = document.getElementById('dob-month').value;
+            const dobYear = document.getElementById('dob-year').value;
+            const dob = `${dobYear}-${dobMonth}-${dobDay}`;
+            const tnc = document.getElementById('tnc').checked;
+            let isValid = true;
+
+            if (name === '') {
+                document.getElementById('name-error').innerText = 'Name is required.';
+                isValid = false;
+            } else {
+                document.getElementById('name-error').innerText = '';
+            }
+
+            if (email === '') {
+                document.getElementById('email-error').innerText = 'Email is required.';
+                isValid = false;
+            } else {
+                document.getElementById('email-error').innerText = '';
+            }
+
+            if (password === '') {
+                document.getElementById('password-error').innerText = 'Password is required.';
+                isValid = false;
+            } else {
+                document.getElementById('password-error').innerText = '';
+            }
+
+            if (!tnc) {
+                document.getElementById('tnc-error').innerText = 'You must agree to the terms and conditions.';
+                isValid = false;
+            } else {
+                document.getElementById('tnc-error').innerText = '';
+            }
+
+            if (isValid) {
+                const userProfile = {
+                    name: name,
+                    email: email,
+                    password: password,
+                    phone: phone,
+                    gender: gender,
+                    dob: dob
+                };
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+                navigateTo('profile.html');
+            }
+        });
+
+        // Form validation and submission for login form
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            let isValid = true;
+
+            if (email === '') {
+                isValid = false;
+            }
+
+            if (password === '') {
+                isValid = false;
+            }
+
+            if (isValid) {
+                const storedProfile = JSON.parse(localStorage.getItem('userProfile'));
+                if (storedProfile && storedProfile.email === email && storedProfile.password === password) {
+                    navigateTo('profile.html');
+                } else {
+                    alert('Invalid email or password');
+                }
+            }
+        });
+
+        // Form validation for forgot password form
+        document.getElementById('forgotForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('forgot-email').value;
+
+            if (email === '') {
+                document.getElementById('forgot-email-error').innerText = 'Email is required.';
+            } else {
+                document.getElementById('forgot-email-error').innerText = '';
+                alert('Password reset link sent to your email!');
+                // Add your password reset logic here
+            }
+        });
+
+        // Toggle profile menu
+        function toggleProfileMenu() {
+            const profileMenu = document.getElementById('profile-menu');
+            profileMenu.style.display = (profileMenu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('userProfile');
+            navigateTo('homepage.html');
+        }
+
+        // Close the profile menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const profileMenu = document.getElementById('profile-menu');
+            if (!event.target.closest('.profile-icon')) {
+                profileMenu.style.display = 'none';
+            }
+        });
+
+        // Function to handle page transition
+        function navigateTo(url) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+
+        // Add event listeners to navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav ul li a, .footer-section ul li a, .logo');
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    navigateTo(this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

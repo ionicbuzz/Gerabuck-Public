@@ -1,0 +1,90 @@
+<confirmation.html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation - Gerabuck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            overflow: hidden; /* Prevents scrolling */
+        }
+        .confirmation-box {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+        .confirmation-box h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .confirmation-box p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+        .confirmation-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+        .confirmation-button:hover {
+            background-color: #218838;
+        }
+        .cancel-button {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+        .cancel-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <h2>Confirm Your Payment</h2>
+        <p>Are you sure you want to proceed?</p>
+        <button class="confirmation-button" onclick="confirmPayment()">Yes</button>
+        <button class="cancel-button" onclick="cancelPayment()">No</button>
+    </div>
+
+    <script>
+        function confirmPayment() {
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan');
+            localStorage.setItem('subscriptionPlan', plan);
+
+            alert("Payment confirmed! Subscription updated.");
+            window.top.location.href = "profile.html";
+        }
+
+        function cancelPayment() {
+            window.parent.document.getElementById("confirmation-modal").style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<homepage.html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gerabuck</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                transition: opacity 0.5s ease-out; /* Add this line for the transition effect */
+            }
+    
+            body.fade-out {
+                opacity: 0;
+            }
+    
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f4f4f4;
+                padding: 10px 20px;
+                border-bottom: 1px solid #ccc;
+            }
+    
+            .logo a {
+                text-decoration: none;
+                color: #000;
+                font-size: 24px;
+                font-weight: bold;
+            }
+    
+            nav {
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+            }
+    
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+    
+            nav ul li {
+                margin-left: 20px;
+            }
+    
+            nav ul li a {
+                text-decoration: none;
+                color: #000;
+                font-size: 16px;
+            }
+    
+            .profile-icon {
+                position: relative;
+            }
+    
+            .profile-icon img {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+    
+            .profile-menu {
+                display: none;
+                position: absolute;
+                right: 0;
+                background-color: white;
+                border: 1px solid #ccc;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                width: 150px;
+                text-align: left;
+            }
+    
+            .profile-menu a {
+                display: block;
+                padding: 10px;
+                text-decoration: none;
+                color: black;
+            }
+    
+            .profile-menu a:hover {
+                background-color: #f4f4f4;
+            }
+    
+            main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+    
+            h1 {
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+    
+            .content {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                max-width: 1200px;
+            }
+    
+            .about-us {
+                width: 50%;
+            }
+    
+            .about-us h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+    
+            .about-us p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+                text-align: justify;
+            }
+    
+            .image-placeholder {
+                width: 1000px;
+                height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            .image-placeholder img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+    
+            footer {
+                background-color: #E5E4E2;
+                padding: 20px;
+                border-top: 1px solid #ccc;
+            }
+    
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+    
+            .footer-section {
+                width: 30%;
+            }
+    
+            .footer-section h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+    
+            .footer-section ul {
+                list-style-type: none;
+                padding: 0;
+            }
+    
+            .footer-section ul li {
+                margin-bottom: 10px;
+            }
+    
+            .footer-section ul li a {
+                text-decoration: none;
+                color: #000;
+            }
+    
+            .footer-section ul li a:hover {
+                text-decoration: underline;
+            }
+    
+            .footer-bottom {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo"><a href="/" onclick="navigateTo('/'); return false;">GERABUCK</a></div>
+            <nav>
+                <ul>
+                    <li><a href="journey" onclick="navigateTo('journey.html'); return false;">Journey Plan</a></li>
+                    <li><a href="subscription" onclick="navigateTo('subscription.html'); return false;">Subscription</a></li>
+                </ul>
+            </nav>
+            <div class="profile-icon" onclick="toggleProfileMenu()">
+                <img src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png" alt="Profile">
+                <div id="profile-menu" class="profile-menu">
+                    <a href="user" onclick="navigateTo('user'); return false;">User Access</a>
+                    <a href="profile" onclick="navigateTo('profile'); return false;">Profile</a>
+                    <a href="javascript:void(0);" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <h1>WELCOME TO GERABUCK!</h1>
+            <div class="content">
+                <section class="about-us">
+                    <h2>What We Do</h2>
+                    <p>Discover the future of travel with our premier ticketing transport system, designed for ultimate convenience and efficiency. Our cutting-edge platform offers seamless access to tickets for electric trains and commuters, ensuring you get where you need to go with ease. Enjoy a user-friendly interface, secure transactions, and exceptional customer support that makes booking your journey a breeze.</p>
+                    <p>Whether you're a daily commuter or an adventurous explorer, our system guarantees a smooth and comfortable travel experience every time. Join the growing community of savvy travelers who trust us for all their ticketing needs and elevate your travel game today!</p>
+                </section>
+                <div class="image-placeholder">
+                    <img src="https://www.terabee.com/wp-content/uploads/2019/10/Railway-inspection-Terabee.jpg" alt="Image Placeholder" />
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="contact.html" onclick="navigateTo('contact.html'); return false;">Contact Us</a></li>
+                        <li><a href="career.html" onclick="navigateTo('career.html'); return false;">Career Path</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="faqs.html" onclick="navigateTo('faqs.html'); return false;">FAQs</a></li>
+                        <li><a href="safety.html" onclick="navigateTo('safety.html'); return false;">Safety Advisory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                                            <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Copyright © 2024 Gerabuck. All Rights Reserved.
+            </div>
+        </footer>
+        <script>
+            // Toggle profile menu
+            function toggleProfileMenu() {
+                const profileMenu = document.getElementById('profile-menu');
+                if (profileMenu.style.display === 'block') {
+                    profileMenu.style.display = 'none';
+                } else {
+                    profileMenu.style.display = 'block';
+                }
+            }
+    
+            // Logout function
+            function logout() {
+                localStorage.removeItem('userProfile');
+                window.location.href = 'homepage.html';
+            }
+    
+            // Close the profile menu when clicking outside of it
+            document.addEventListener('click', function(event) {
+                const profileMenu = document.getElementById('profile-menu');
+                if (!event.target.closest('.profile-icon')) {
+                    profileMenu.style.display = 'none';
+                }
+            });
+    
+            // Function to handle page transition
+            function navigateTo(url) {
+                document.body.classList.add('fade-out');
+                setTimeout(function() {
+                    window.location.href = url;
+                }, 500); // Match this to the CSS transition duration
+            }
+    
+            // Add event listeners to navigation links
+            document.addEventListener('DOMContentLoaded', function() {
+                const links = document.querySelectorAll('nav ul li a, .footer-section ul li a, .logo a');
+                links.forEach(function(link) {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const url = this.href;
+                        navigateTo(url);
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>

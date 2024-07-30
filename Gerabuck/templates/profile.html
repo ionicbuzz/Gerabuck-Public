@@ -1,0 +1,464 @@
+<profile.html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Gerabuck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            transition: opacity 0.5s ease-out;
+        }
+        body.fade-out {
+            opacity: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+        }
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+        .profile-icon {
+            position: relative;
+        }
+        .profile-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            width: 100px;
+            text-align: left;
+        }
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .profile-menu a:hover {
+            background-color: #f4f4f4;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            background-color: #2e3b4e;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .profile-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-header .buttons {
+            display: flex;
+        }
+        .profile-header .buttons button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .profile-header .buttons button:hover {
+            background-color: #ccc;
+        }
+        .profile-content {
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid #2e3b4e;
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .profile-content p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-content label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .modal-content input,
+        .modal-content select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .modal-content button {
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background-color: #333;
+        }
+        footer {
+            background-color: #E5E4E2;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-section {
+            width: 30%;
+        }
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/" onclick="navigateTo('/'); return false;">GERABUCK</a></div>
+        <nav>
+            <ul>
+                <li><a href="journey.html" onclick="navigateTo('journey.html'); return false;">Journey Plan</a></li>
+                <li><a href="subscription.html" onclick="navigateTo('subscription.html'); return false;">Subscription</a></li>
+            </ul>
+        </nav>
+        <div class="profile-icon">
+            <img src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png" alt="Profile" onclick="toggleProfileMenu()">
+            <div id="profile-menu" class="profile-menu">
+                <a href="homepage.html" onclick="navigateTo('/'); return false;">Home</a>
+                <a href="homepage.html" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="profile-header">
+            <h2>Profile</h2>
+            <div class="buttons">
+                <button onclick="openEditProfileModal()">Edit Profile</button>
+                <button onclick="openChangePasswordModal()">Change Password</button>
+            </div>
+        </div>
+        <div class="profile-content">
+            <p><strong>Name:</strong> <span id="profile-name"></span></p>
+            <p><strong>Email:</strong> <span id="profile-email"></span></p>
+            <p><strong>Contact:</strong> <span id="profile-contact"></span></p>
+            <p><strong>Gender:</strong> <span id="profile-gender"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="profile-dob"></span></p>
+            <p><strong>Subscription Plan:</strong> <span id="profile-subscription"></span></p>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditProfileModal()">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm">
+                <label for="edit-name">Name</label>
+                <input type="text" id="edit-name" name="name" required>
+
+                <label for="edit-email">Email</label>
+                <input type="email" id="edit-email" name="email" required>
+
+                <label for="edit-contact">Contact</label>
+                <input type="text" id="edit-contact" name="contact" required>
+
+                <label for="edit-gender">Gender</label>
+                <select id="edit-gender" name="gender" required>
+                    <option value="" disabled>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <label for="edit-dob">Date of Birth</label>
+                <input type="date" id="edit-dob" name="dob" required>
+
+                <label for="edit-subscription">Subscription Plan</label>
+                <input type="text" id="edit-subscription" name="subscription" required>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChangePasswordModal()">&times;</span>
+            <h2>Change Password</h2>
+            <form id="changePasswordForm">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" name="current-password" required>
+
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" name="new-password" required>
+
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <button type="submit">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="contact.html" onclick="navigateTo('contact.html'); return false;">Contact Us</a></li>
+                    <li><a href="career.html" onclick="navigateTo('career.html'); return false;">Career Path</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="faqs.html" onclick="navigateTo('faqs.html'); return false;">FAQs</a></li>
+                    <li><a href="safety.html" onclick="navigateTo('safety.html'); return false;">Safety Advisory</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright © 2024 Gerabuck. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+
+        function displayUserData() {
+            const storedProfile = JSON.parse(localStorage.getItem('userProfile'));
+            const subscriptionPlan = localStorage.getItem('subscriptionPlan');
+
+            if (storedProfile) {
+                document.getElementById("profile-name").innerText = storedProfile.name;
+                document.getElementById("profile-email").innerText = storedProfile.email;
+                document.getElementById("profile-contact").innerText = storedProfile.phone;
+                document.getElementById("profile-gender").innerText = storedProfile.gender;
+                document.getElementById("profile-dob").innerText = storedProfile.dob;
+                document.getElementById("profile-subscription").innerText = subscriptionPlan;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', displayUserData);
+
+        function openEditProfileModal() {
+            const storedProfile = JSON.parse(localStorage.getItem('userProfile'));
+            if (storedProfile) {
+                document.getElementById('edit-name').value = storedProfile.name;
+                document.getElementById('edit-email').value = storedProfile.email;
+                document.getElementById('edit-contact').value = storedProfile.phone;
+                document.getElementById('edit-gender').value = storedProfile.gender;
+                document.getElementById('edit-dob').value = storedProfile.dob;
+                document.getElementById('edit-subscription').value = localStorage.getItem('subscriptionPlan');
+            }
+            document.getElementById('editProfileModal').style.display = 'block';
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').style.display = 'none';
+        }
+
+        document.getElementById('editProfileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const updatedProfile = {
+                name: document.getElementById('edit-name').value,
+                email: document.getElementById('edit-email').value,
+                phone: document.getElementById('edit-contact').value,
+                gender: document.getElementById('edit-gender').value,
+                dob: document.getElementById('edit-dob').value,
+                subscription: document.getElementById('edit-subscription').value
+            };
+            localStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+            displayUserData();
+            closeEditProfileModal();
+        });
+
+        function openChangePasswordModal() {
+            document.getElementById('changePasswordModal').style.display = 'block';
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById('changePasswordModal').style.display = 'none';
+        }
+
+        document.getElementById('changePasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            const storedProfile = JSON.parse(localStorage.getItem('userProfile'));
+
+            if (storedProfile.password !== currentPassword) {
+                alert('Current password is incorrect.');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('New passwords do not match.');
+                return;
+            }
+
+            storedProfile.password = newPassword;
+            localStorage.setItem('userProfile', JSON.stringify(storedProfile));
+            alert('Password changed successfully.');
+            closeChangePasswordModal();
+        });
+
+        function toggleProfileMenu() {
+            const profileMenu = document.getElementById('profile-menu');
+            profileMenu.style.display = (profileMenu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function logout() {
+            localStorage.removeItem('userProfile');
+            localStorage.removeItem('subscriptionPlan');
+            navigateTo('homepage.html');
+        }
+
+        document.addEventListener('click', function(event) {
+            const profileMenu = document.getElementById('profile-menu');
+            if (!event.target.closest('.profile-icon')) {
+                profileMenu.style.display = 'none';
+            }
+        });
+
+        function navigateTo(url) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav ul li a, .footer-section ul li a, .logo');
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    navigateTo(url);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

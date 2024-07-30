@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Plan - Gerabuck</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            transition: opacity 0.5s ease-out; /* Add this line for the transition effect */
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .profile-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .journey-plan {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .journey-plan h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .journey-plan p {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .journey-plan label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .journey-plan input {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .journey-plan button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .journey-plan button:hover {
+            background-color: #218838;
+        }
+
+        .fare-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .fare-display p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .fare-display .fare-amount {
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        .map {
+            width: 85%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .map img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        footer {
+            background-color: #E5E4E2;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="/" onclick="navigateTo('/'); return false;">GERABUCK</a></div>
+        <nav>
+            <ul>
+                <li><a href="journey" onclick="navigateTo('journey'); return false;">Journey Plan</a></li>
+                <li><a href="subscription" onclick="navigateTo('subscription'); return false;">Subscription</a></li>
+            </ul>
+        </nav>
+        <div class="profile-icon"><a href="profile" onclick="navigateTo('profile'); return false;"><img src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png" alt="Profile"></a></div>
+    </header>
+    <main>
+        <div class="journey-plan">
+            <h1>JOURNEY PLAN</h1>
+            <p>Plan. Track. Ride ON the web</p>
+            <label for="from">FROM <alt="Walk"></label>
+            <input type="text" id="from" name="from" list="stations" placeholder="Enter departure location">
+            <label for="to">TO <alt="Pin" ></label>
+            <input type="text" id="to" name="to" list="stations" placeholder="Enter destination">
+            <datalist id="stations">
+                <option value="Tumpat">
+                <option value="Wakaf Bharu">
+                <option value="Tanah Merah">
+                <option value="Kuala Krai">
+                <option value="Dabong">
+                <option value="Gua Musang">
+                <option value="Kuala Lipis">
+                <option value="Jerantut">
+                <option value="Mentakab">
+                <option value="Bahau">
+                <option value="Padang Besar">
+                <option value="Arau">
+                <option value="Alor Setar">
+                <option value="Gurun">
+                <option value="Sungai Petani">
+                <option value="Tasek Gelugor">
+                <option value="Parit Buntar">
+                <option value="Bagan Serai">
+                <option value="Taiping">
+                <option value="Kuala Kangsar">
+                <option value="Ipoh">
+                <option value="Batu Gajah">
+                <option value="Tapah Road">
+                <option value="Kuala Kubu Bharu">
+                <option value="Tanjung Malim">
+                <option value="Sungai Buloh">
+                <option value="KL Sentral">
+                <option value="Bandar Tasik Selatan">
+                <option value="Kajang">
+                <option value="Seremban">
+                <option value="Senawang">
+                <option value="Rembau">
+                <option value="Tampin">
+                <option value="Gemas">
+                <option value="JB Sentral">
+                <option value="Kempas Baru">
+                <option value="Kulai">
+                <option value="Layang-Layang">
+                <option value="Rengam">
+                <option value="Kluang">
+                <option value="Paloh">
+                <option value="Bekok">
+                <option value="Labis">
+                <option value="Segamat">
+            </datalist>
+            <button onclick="calculateFare()">ENTER</button>
+            <div class="fare-display">
+                <p>FARE <alt="Fare"></p>
+                <div class="fare-amount" id="fare-amount">RM 0.00</div>
+            </div>
+        </div>
+        <div class="map">
+            <img  src="https://i0.wp.com/transitmap.net/wp-content/uploads/2021/05/Klang-Valley_2021.jpg?ssl=1" alt="Klang Valley Transit Map">
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="contact.html" onclick="navigateTo('contact.html'); return false;">Contact Us</a></li>
+                    <li><a href="career.html" onclick="navigateTo('career.html'); return false;">Career Path</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="faqs.html" onclick="navigateTo('faqs.html'); return false;">FAQs</a></li>
+                    <li><a href="safety.html" onclick="navigateTo('safety.html'); return false;">Safety Advisory</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Copyright © 2024 Gerabuck. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+        // Calculate fare
+        function calculateFare() {
+            const baseFare = 5.00;
+            const sst = 0.06;
+            const totalFare = baseFare + (baseFare * sst);
+            document.getElementById("fare-amount").innerText = "RM " + totalFare.toFixed(2);
+        }
+
+        // Function to handle page transition
+        function navigateTo(url) {
+            document.body.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = url;
+            }, 500); // Match this to the CSS transition duration
+        }
+
+        // Add event listeners to navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav ul li a, .footer-section ul li a, .logo a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const url = this.href;
+                    navigateTo(url);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
